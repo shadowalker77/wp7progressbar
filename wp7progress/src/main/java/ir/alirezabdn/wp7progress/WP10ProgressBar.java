@@ -1,7 +1,5 @@
 package ir.alirezabdn.wp7progress;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
@@ -9,17 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.animation.LinearInterpolator;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-public class WP7ProgressBar extends LinearLayout {
+public class WP10ProgressBar extends RelativeLayout {
 
     private static final int INTERVAL_DEF = 150;
     private static final int INDICATOR_COUNT_DEF = 5;
-    private static final int ANIMATION_DURATION_DEF = 2200;
-    private static final int INDICATOR_HEIGHT_DEF = 5;
+    private static final int ANIMATION_DURATION_DEF = 1800;
+    private static final int INDICATOR_HEIGHT_DEF = 7;
     private static final int INDICATOR_RADIUS_DEF = 0;
 
     private int interval;
@@ -29,38 +26,36 @@ public class WP7ProgressBar extends LinearLayout {
     private int indicatorRadius;
 
     private boolean isShowing = false;
-    private ArrayList<WP7Indicator> WP7Indicators;
+    private ArrayList<WP10Indicator> wp10Indicators;
 
     private Handler handler;
     private int progressBarCount = 0;
 
-    private ObjectAnimator objectAnimator;
-
-    public WP7ProgressBar(Context context) {
+    public WP10ProgressBar(Context context) {
         super(context);
         initialize(null);
     }
 
-    public WP7ProgressBar(Context context, @Nullable AttributeSet attrs) {
+    public WP10ProgressBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initialize(attrs);
     }
 
-    public WP7ProgressBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public WP10ProgressBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialize(attrs);
     }
 
     private void initialize(@Nullable AttributeSet attrs) {
         this.setGravity(Gravity.CENTER);
-        this.setOrientation(HORIZONTAL);
         this.handler = new Handler();
+        this.setRotation(-25);
         setAttributes(attrs);
         initializeIndicators();
     }
 
     private void setAttributes(AttributeSet attributeSet) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.WP7ProgressBar);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.WP10ProgressBar);
         interval = typedArray.getInt(R.styleable.WP7ProgressBar_interval, INTERVAL_DEF);
         animationDuration = typedArray.getInt(R.styleable.WP7ProgressBar_animationDuration, ANIMATION_DURATION_DEF);
         indicatorHeight = typedArray.getInt(R.styleable.WP7ProgressBar_indicatorHeight, INDICATOR_HEIGHT_DEF);
@@ -71,20 +66,21 @@ public class WP7ProgressBar extends LinearLayout {
     }
 
     private void showAnimation() {
-        for (int i = 0; i < WP7Indicators.size(); i++) {
-            WP7Indicators.get(i).startAnim(animationDuration, (5 - i) * interval);
+        for (int i = 0; i < wp10Indicators.size(); i++) {
+            wp10Indicators.get(i).startAnim(animationDuration, (5 - i) * interval);
         }
     }
 
     private void initializeIndicators() {
-        if (WP7Indicators == null) {
-            ArrayList<WP7Indicator> WP7Indicators = new ArrayList<>();
+        if (wp10Indicators == null) {
+            ArrayList<WP10Indicator> WP10Indicators = new ArrayList<>();
             for (int i = 0; i < INDICATOR_COUNT_DEF; i++) {
-                WP7Indicator WP7Indicator = new WP7Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius);
-                WP7Indicators.add(WP7Indicator);
-                this.addView(WP7Indicator);
+                WP10Indicator wp10Indicator = new WP10Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius, i);
+//                wp10Indicator.setRotation(i * 14);
+                WP10Indicators.add(wp10Indicator);
+                this.addView(wp10Indicator);
             }
-            this.WP7Indicators = WP7Indicators;
+            this.wp10Indicators = WP10Indicators;
         }
     }
 
@@ -102,24 +98,9 @@ public class WP7ProgressBar extends LinearLayout {
 //        hideWholeViewAnimation();
     }
 
-    private void startWholeViewAnimation() {
-        objectAnimator = ObjectAnimator.ofFloat(this, "translationX", -200, 200);
-        objectAnimator.setInterpolator(new LinearInterpolator());
-        objectAnimator.setDuration(animationDuration + (5 * interval));
-        objectAnimator.setRepeatMode(ValueAnimator.RESTART);
-        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        objectAnimator.start();
-    }
-
-    private void hideWholeViewAnimation() {
-        objectAnimator.removeAllListeners();
-        objectAnimator.cancel();
-        objectAnimator.end();
-    }
-
     private void clearIndicatorsAnimations() {
-        for (WP7Indicator WP7Indicator : WP7Indicators) {
-            WP7Indicator.removeAnim();
+        for (WP10Indicator wp10Indicator : wp10Indicators) {
+            wp10Indicator.removeAnim();
         }
     }
 
@@ -129,7 +110,7 @@ public class WP7ProgressBar extends LinearLayout {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    WP7ProgressBar.this.show();
+                    WP10ProgressBar.this.show();
                 }
             });
         }
@@ -141,7 +122,7 @@ public class WP7ProgressBar extends LinearLayout {
             @Override
             public void run() {
                 if (progressBarCount == 0) {
-                    WP7ProgressBar.this.hide();
+                    WP10ProgressBar.this.hide();
                 }
             }
         }, 50);

@@ -7,12 +7,12 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.LinearLayout;
 
-class Indicator extends View {
+class WP7Indicator extends View {
 
     private ObjectAnimator objectAnimator;
     private int color;
 
-    public Indicator(Context context, int indicatorHeight, int color, int radius) {
+    public WP7Indicator(Context context, int indicatorHeight, int color, int radius) {
         super(context);
         this.color = color;
         initialize(indicatorHeight, radius);
@@ -20,8 +20,8 @@ class Indicator extends View {
 
     private void initialize(int indicatorHeight, int radius) {
         this.setBackground(getCube(radius));
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(px2dp(indicatorHeight), px2dp(indicatorHeight));
-        layoutParams.rightMargin = px2dp((int) (1.7f * indicatorHeight));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Utils.px2dp(getContext(), indicatorHeight), Utils.px2dp(getContext(), indicatorHeight));
+        layoutParams.rightMargin = Utils.px2dp(getContext(), (int) (1.5f * indicatorHeight));
         this.setLayoutParams(layoutParams);
         startAnim(0, 0);
         removeAnim();
@@ -31,18 +31,13 @@ class Indicator extends View {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setColor(color);
-        drawable.setCornerRadius(px2dp(radius));
+        drawable.setCornerRadius(Utils.px2dp(getContext(), radius));
         return drawable;
-    }
-
-    private int px2dp(int px) {
-        float scale = getResources().getDisplayMetrics().density;
-        return (int) (px * scale + 0.5f);
     }
 
     public void startAnim(long animationDuration, long delay) {
         objectAnimator = ObjectAnimator.ofFloat(this, "translationX", +1000, -1000);
-        objectAnimator.setInterpolator(new CubicInterpolator());
+        objectAnimator.setInterpolator(new WPInterpolator());
         objectAnimator.setDuration(animationDuration);
         objectAnimator.setRepeatMode(ValueAnimator.RESTART);
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
@@ -55,14 +50,4 @@ class Indicator extends View {
         objectAnimator.cancel();
         objectAnimator.end();
     }
-
-    private class CubicInterpolator implements android.view.animation.Interpolator {
-        @Override
-        public float getInterpolation(float input) {
-            if (input > 0.3f && input < 0.70f)
-                return (float) ((-(input - 0.5) / 6) + 0.5f);
-            return (float) ((-4) * Math.pow(input - 0.5, 3) + 0.5);
-        }
-    }
-
 }

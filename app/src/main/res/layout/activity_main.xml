@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ir.alirezabdn.wp7progress.WP7ProgressBar
-        android:id="@+id/pBar"
+        android:id="@+id/wp7progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -18,23 +18,52 @@
         app:animationDuration="2300"
         />
 
+    <ir.alirezabdn.wp7progress.WP10ProgressBar
+        android:id="@+id/wp10progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorRadius="5"
+        android:clipChildren="false"/>
+
     <LinearLayout
+        android:id="@+id/wp7Ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
         <Button
-            android:id="@+id/showBtn"
+            android:id="@+id/showWP7Btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Show progress bar" />
+            android:text="Show WP7 bar" />
 
         <Button
-            android:id="@+id/hideBtn"
+            android:id="@+id/hideWP7Btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hide progress bar" />
+            android:text="Hide WP7 bar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_above="@+id/wp7Ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/showWP10Btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show WP10 bar" />
+
+        <Button
+            android:id="@+id/hideWP10Btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hide WP10 bar" />
     </LinearLayout>
 </RelativeLayout>
