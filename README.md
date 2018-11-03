@@ -1,6 +1,7 @@
 # Windows Phone Awsome Progress Bar
 This library aims to bring awsome windows phone 7 and windows 10 progress bar to android applications. Here is the example:
-Windows 10             |  Windows Phone 7
+
+Windows 10                 |  Windows Phone 7
 :-------------------------:|:-------------------------:
 ![](https://github.com/shadowalker77/wp7progressbar/raw/master/ScreenShots/wp10.gif)  |  ![](https://github.com/shadowalker77/wp7progressbar/raw/master/ScreenShots/wp7.gif)
 
