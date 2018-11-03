@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
     <ir.alirezabdn.wp7progress.WP7ProgressBar
@@ -11,20 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        app:animationDuration="2300"
         app:indicatorColor="@color/colorProgressBar"
         app:indicatorHeight="7"
-        app:interval="100"
         app:indicatorRadius="5"
-        app:animationDuration="2300"
-        />
+        app:interval="100" />
 
     <ir.alirezabdn.wp7progress.WP10ProgressBar
         android:id="@+id/wp10progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:indicatorRadius="5"
-        android:clipChildren="false"/>
+        android:clipChildren="false"
+        app:indicatorRadius="5" />
 
     <LinearLayout
         android:id="@+id/wp7Ll"
@@ -48,9 +47,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_above="@+id/wp7Ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/wp7Ll">
 
         <Button
             android:id="@+id/showWP10Btn"
