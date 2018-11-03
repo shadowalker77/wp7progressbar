@@ -1,8 +1,8 @@
 # Windows Phone Awsome Progress Bar
 This library aims to bring awsome windows phone 7 and windows 10 progress bar to android applications. Here is the example:
-
-![Windows 10](https://github.com/shadowalker77/wp7progressbar/raw/master/ScreenShots/wp10.gif)
-![Windows Phone 7](https://github.com/shadowalker77/wp7progressbar/raw/master/ScreenShots/wp7.gif)
+Windows 10             |  Windows Phone 7
+:-------------------------:|:-------------------------:
+![](https://github.com/shadowalker77/wp7progressbar/raw/master/ScreenShots/wp10.gif)  |  ![](https://github.com/shadowalker77/wp7progressbar/raw/master/ScreenShots/wp7.gif)
 
 Add jitPack maven to your project level repositories:
 ```
