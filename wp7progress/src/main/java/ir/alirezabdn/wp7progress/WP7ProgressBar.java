@@ -1,5 +1,7 @@
 package ir.alirezabdn.wp7progress;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
@@ -7,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -17,17 +20,21 @@ public class WP7ProgressBar extends LinearLayout {
     private static final int INDICATOR_COUNT_DEF = 5;
     private static final int ANIMATION_DURATION_DEF = 2200;
     private static final int INDICATOR_HEIGHT_DEF = 5;
+    private static final int INDICATOR_RADIUS_DEF = 0;
 
     private int interval;
     private int animationDuration;
     private int indicatorHeight;
     private int indicatorColor;
+    private int indicatorRadius;
 
     private boolean isShowing = false;
     private ArrayList<Indicator> indicators;
 
     private Handler handler;
     private int progressBarCount = 0;
+
+    private ObjectAnimator objectAnimator;
 
     public WP7ProgressBar(Context context) {
         super(context);
@@ -57,6 +64,7 @@ public class WP7ProgressBar extends LinearLayout {
         interval = typedArray.getInt(R.styleable.WP7ProgressBar_interval, INTERVAL_DEF);
         animationDuration = typedArray.getInt(R.styleable.WP7ProgressBar_animationDuration, ANIMATION_DURATION_DEF);
         indicatorHeight = typedArray.getInt(R.styleable.WP7ProgressBar_indicatorHeight, INDICATOR_HEIGHT_DEF);
+        indicatorRadius = typedArray.getInt(R.styleable.WP7ProgressBar_indicatorRadius, INDICATOR_RADIUS_DEF);
         indicatorColor = typedArray.getColor(R.styleable.WP7ProgressBar_indicatorColor,
                 ContextCompat.getColor(getContext(), R.color.colorAccent));
         typedArray.recycle();
@@ -72,7 +80,7 @@ public class WP7ProgressBar extends LinearLayout {
         if (indicators == null) {
             ArrayList<Indicator> indicators = new ArrayList<>();
             for (int i = 0; i < INDICATOR_COUNT_DEF; i++) {
-                Indicator indicator = new Indicator(getContext(), indicatorHeight, indicatorColor);
+                Indicator indicator = new Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius);
                 indicators.add(indicator);
                 this.addView(indicator);
             }
@@ -85,11 +93,28 @@ public class WP7ProgressBar extends LinearLayout {
             return;
         isShowing = true;
         showAnimation();
+//        startWholeViewAnimation();
     }
 
     private void hide() {
         clearIndicatorsAnimations();
         isShowing = false;
+//        hideWholeViewAnimation();
+    }
+
+    private void startWholeViewAnimation() {
+        objectAnimator = ObjectAnimator.ofFloat(this, "translationX", -200, 200);
+        objectAnimator.setInterpolator(new LinearInterpolator());
+        objectAnimator.setDuration(animationDuration + (5 * interval));
+        objectAnimator.setRepeatMode(ValueAnimator.RESTART);
+        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        objectAnimator.start();
+    }
+
+    private void hideWholeViewAnimation() {
+        objectAnimator.removeAllListeners();
+        objectAnimator.cancel();
+        objectAnimator.end();
     }
 
     private void clearIndicatorsAnimations() {
