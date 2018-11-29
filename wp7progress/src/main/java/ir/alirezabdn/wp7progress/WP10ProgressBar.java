@@ -72,16 +72,15 @@ public class WP10ProgressBar extends RelativeLayout {
     }
 
     private void initializeIndicators() {
-        if (wp10Indicators == null) {
-            ArrayList<WP10Indicator> WP10Indicators = new ArrayList<>();
-            for (int i = 0; i < INDICATOR_COUNT_DEF; i++) {
-                WP10Indicator wp10Indicator = new WP10Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius, i);
+        this.removeAllViews();
+        ArrayList<WP10Indicator> WP10Indicators = new ArrayList<>();
+        for (int i = 0; i < INDICATOR_COUNT_DEF; i++) {
+            WP10Indicator wp10Indicator = new WP10Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius, i);
 //                wp10Indicator.setRotation(i * 14);
-                WP10Indicators.add(wp10Indicator);
-                this.addView(wp10Indicator);
-            }
-            this.wp10Indicators = WP10Indicators;
+            WP10Indicators.add(wp10Indicator);
+            this.addView(wp10Indicator);
         }
+        this.wp10Indicators = WP10Indicators;
     }
 
     private void show() {

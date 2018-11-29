@@ -77,15 +77,14 @@ public class WP7ProgressBar extends LinearLayout {
     }
 
     private void initializeIndicators() {
-        if (WP7Indicators == null) {
-            ArrayList<WP7Indicator> WP7Indicators = new ArrayList<>();
-            for (int i = 0; i < INDICATOR_COUNT_DEF; i++) {
-                WP7Indicator WP7Indicator = new WP7Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius);
-                WP7Indicators.add(WP7Indicator);
-                this.addView(WP7Indicator);
-            }
-            this.WP7Indicators = WP7Indicators;
+        this.removeAllViews();
+        ArrayList<WP7Indicator> WP7Indicators = new ArrayList<>();
+        for (int i = 0; i < INDICATOR_COUNT_DEF; i++) {
+            WP7Indicator WP7Indicator = new WP7Indicator(getContext(), indicatorHeight, indicatorColor, indicatorRadius);
+            WP7Indicators.add(WP7Indicator);
+            this.addView(WP7Indicator);
         }
+        this.WP7Indicators = WP7Indicators;
     }
 
     private void show() {

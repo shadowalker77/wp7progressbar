@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         final WP7ProgressBar wp7ProgressBar = findViewById(R.id.wp7progressBar);
         final WP10ProgressBar wp10ProgressBar = findViewById(R.id.wp10progressBar);
+        wp10ProgressBar.setIndicatorRadius(5);
 
         findViewById(R.id.showWP7Btn).setOnClickListener(new View.OnClickListener() {
             @Override
