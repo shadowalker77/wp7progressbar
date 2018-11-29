@@ -146,4 +146,24 @@ public class WP7ProgressBar extends LinearLayout {
             }
         }, 50);
     }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
+
+    public void setAnimationDuration(int animationDuration) {
+        this.animationDuration = animationDuration;
+    }
+
+    public void setIndicatorHeight(int indicatorHeight) {
+        this.indicatorHeight = indicatorHeight;
+    }
+
+    public void setIndicatorColor(int indicatorColor) {
+        this.indicatorColor = indicatorColor;
+    }
+
+    public void setIndicatorRadius(int indicatorRadius) {
+        this.indicatorRadius = indicatorRadius;
+    }
 }
