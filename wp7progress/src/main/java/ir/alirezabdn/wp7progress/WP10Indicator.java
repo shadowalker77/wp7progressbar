@@ -38,17 +38,27 @@ public class WP10Indicator extends RelativeLayout {
         objectAnimator.setDuration(animationDuration);
         objectAnimator.setRepeatMode(ValueAnimator.RESTART);
         objectAnimator.setRepeatCount(2);
-        objectAnimator.addListener(new AnimatorListenerAdapter() {
+        objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation, boolean isReverse) {
+            public void onAnimationStart(Animator animator) {
                 WP10Indicator.this.setAlpha(1f);
                 startAlphaAnimation(animationDuration);
             }
 
             @Override
-            public void onAnimationEnd(Animator animation, boolean isReverse) {
+            public void onAnimationEnd(Animator animator) {
                 removeAnim();
                 startAnim(animationDuration, 0);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
             }
         });
         objectAnimator.setStartDelay(delay);

@@ -17,7 +17,7 @@ allprojects {
 ```
 Then put this line in your module level gradle:
 ```
-implementation 'com.github.shadowalker77:wp7progressbar:1.0.4'
+implementation 'com.github.shadowalker77:wp7progressbar:1.0.5'
 ```
 Now you can use these two awesome progress bar:
 
