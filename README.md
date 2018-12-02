@@ -1,5 +1,5 @@
 # Windows Phone Awsome Progress Bar
-This library aims to bring awsome windows phone 7 and windows 10 progress bar to android applications. Here is the example:
+This library aims to bring awesome windows phone 7 and windows 10 progress bar to android applications. Here is the example:
 
 Windows 10                 |  Windows Phone 7
 :-------------------------:|:-------------------------:
@@ -39,7 +39,7 @@ Add this lines to your layout:
         android:layout_height="wrap_content" />
 ```
 # Customization
-Features of both of these views can be customzied, for example for WP7ProgressBar:
+Features of both of these views can be customized, for example for WP7ProgressBar:
 ```
 <ir.alirezabdn.wp7progress.WP7ProgressBar
         android:id="@+id/wp7progressBar"
@@ -62,7 +62,7 @@ progressBar.showProgressBar();
 progressBar.hideProgressBar();
 ```
 # Extra Feature
-You can use these progress bars for api calls easly. How? 
+You can use these progress bars for api calls easily. How?
 
    - Parallel API call:
 In case of parallel api call, if you call showProgressBar() method x times, you have to call hideProgressBar() method x times as well. So progress bar will continue to show until you call exactly x time.
