@@ -4,13 +4,15 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
@@ -52,6 +54,9 @@ public class WP7ProgressBar extends LinearLayout {
     }
 
     private void initialize(@Nullable AttributeSet attrs) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            this.setLayoutDirection(LAYOUT_DIRECTION_LTR);
+        }
         this.setGravity(Gravity.CENTER);
         this.setOrientation(HORIZONTAL);
         this.handler = new Handler();

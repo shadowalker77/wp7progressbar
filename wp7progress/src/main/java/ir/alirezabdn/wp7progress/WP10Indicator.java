@@ -1,10 +1,10 @@
 package ir.alirezabdn.wp7progress;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Build;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 
@@ -20,6 +20,9 @@ public class WP10Indicator extends RelativeLayout {
     }
 
     private void initialize(int indicatorHeight, int color, int radius, int number) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            this.setLayoutDirection(LAYOUT_DIRECTION_LTR);
+        }
         this.number = number;
         this.base10Indicator = new Base10Indicator(getContext(), indicatorHeight, color, radius);
         RelativeLayout.LayoutParams layoutParams = new LayoutParams(Utils.px2dp(getContext(), indicatorHeight * 8),

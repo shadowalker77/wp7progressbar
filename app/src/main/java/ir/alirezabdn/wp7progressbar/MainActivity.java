@@ -1,8 +1,9 @@
 package ir.alirezabdn.wp7progressbar;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import ir.alirezabdn.wp7progress.WP10ProgressBar;
 import ir.alirezabdn.wp7progress.WP7ProgressBar;
